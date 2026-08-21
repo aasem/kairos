@@ -19,10 +19,10 @@ backlog to triage before I could start. That's exactly backwards when
 the actual bottleneck is the ten seconds between a pocket opening and a
 decision getting made.
 
-So Kairos doesn't ask you to plan a day. It asks you two numbers per
-pursuit — a weekly quota, and a tie-break priority — and then, whenever
-you open it, tells you the one thing furthest behind. You press **GO**.
-You do the thing. You press **DONE**. That's the whole interaction.
+So Kairos doesn't ask you to plan a day. It asks you one number per
+pursuit — a weekly quota — and then, whenever you open it, tells you
+the one thing furthest behind. You press **GO**. You do the thing. You
+press **DONE**. That's the whole interaction.
 
 *Kairos* (καιρός) is the Greek word for the opportune, unscheduled
 moment — as opposed to *chronos*, sequential clock-time. This app has
@@ -33,12 +33,14 @@ moment you already have, not the moment you were supposed to have.
 
 ## How it works
 
-- **You define pursuits**, each with a name, a **weekly time quota**,
-  and a **priority** (used only to break near-ties in ranking).
+- **You define pursuits**, each with a name and a **weekly time quota**.
 - **The home screen shows one pursuit** — the one furthest behind its
   own quota, weighted by how much of the week is left. Everyone else's
   state is visible as a thin ranked rail on the right; tap any bar to
   bring it to focus instead.
+- **New pursuits start on pace.** Adding one mid-week does not treat it
+  as if you had neglected it since Monday — only time after it exists
+  can put it behind.
 - **GO starts a timer. DONE logs it.** No categories, no manual time
   entry, no forms. The log is just a timestamped start and end.
 - **The pace marker** on the progress bar shows where you'd be if you
@@ -46,9 +48,9 @@ moment you already have, not the moment you were supposed to have.
   same idea as a sundial's shadow. Bar past the mark, you're ahead of
   it, you're behind.
 - **Stats** (7 / 30 / 180 days) show total time, active-day count, a
-  bar chart of the period, and a per-pursuit breakdown you can tap to
-  isolate — mainly so a neglected pursuit shows up as a visible gap
-  rather than disappearing quietly.
+  bar chart of the period, and a per-pursuit breakdown against
+  prorated quota — mainly so a neglected pursuit shows up as a visible
+  gap rather than disappearing quietly.
 
 Colour carries the state: pine when you're on pace, brass as you slip,
 rust when you're badly behind. You should be able to tell how you're
@@ -57,19 +59,29 @@ doing before reading a single number.
 ## The formalism
 
 Let there be $n$ pursuits $X_1, \dots, X_n$. Each $X_i$ carries a weekly
-quota $q_i$ (minutes) and a static tie-break priority $p_i \in \mathbb{Z}^{+}$.
-Let $d_i(t)$ be the cumulative minutes logged against $X_i$ within the
-current ISO week as of time $t$.
+quota $q_i$ (minutes) and a creation time $t_i^{0}$. Let $d_i(t)$ be the
+cumulative minutes logged against $X_i$ within the current ISO week as
+of time $t$.
 
-At any moment $t$, with $\tau(t)$ the minutes remaining until the week's
-close, define the **deficit rate**
+If $X_i$ was created during the current week, it receives a one-time
+**birth credit** so that it begins on pace rather than as if neglected
+since Monday:
 
 $$
-r_i(t) = \frac{q_i - d_i(t)}{\tau(t)}.
+c_i \;=\; q_i \cdot \frac{t_i^{0} - w_{\mathrm{start}}}{w_{\mathrm{end}} - w_{\mathrm{start}}}
+\quad\text{(else $c_i = 0$)}.
 $$
 
-This is not merely "how far behind" — $q_i - d_i(t)$ alone is a raw
-deficit and treats a Monday-morning shortfall the same as a
+Effective progress is $\tilde{d}_i(t) = d_i(t) + c_i$. At any moment $t$,
+with $\tau(t)$ the minutes remaining until the week's close, define the
+**deficit rate**
+
+$$
+r_i(t) = \frac{q_i - \tilde{d}_i(t)}{\tau(t)}.
+$$
+
+This is not merely "how far behind" — $q_i - \tilde{d}_i(t)$ alone is a
+raw deficit and treats a Monday-morning shortfall the same as a
 Saturday-night one. Dividing by $\tau(t)$ converts a static deficit into
 a required *rate of closure*: the pace, in minutes-of-work-per-minute-
 of-week-remaining, that $X_i$ now demands to still make quota. $r_i(t)$
@@ -84,21 +96,15 @@ $$
 X^{*}(t) = \underset{i}{\arg\max}\; r_i(t),
 $$
 
-breaking ties (within a small tolerance $\varepsilon$, since floating
-deficits are rarely exactly equal) by ascending $p_i$:
-
-$$
-i \sim_{\varepsilon} j \iff \lvert r_i(t) - r_j(t) \rvert < \varepsilon
-\quad\Longrightarrow\quad i \prec j \iff p_i < p_j.
-$$
+breaking near-ties by creation order (older first).
 
 Two structural properties fall out for free:
 
-- **Monotonicity under neglect.** For fixed $d_i$, $r_i(t)$ is strictly
-  increasing as $\tau(t) \to 0^{+}$ — a pursuit's urgency accelerates
-  automatically as the week closes on it, with no re-planning required.
-  This is the whole mechanism behind "pacing up": it's not a heuristic
-  bolted on top, it's what the ratio does.
+- **Monotonicity under neglect.** For fixed $\tilde{d}_i$, $r_i(t)$ is
+  strictly increasing as $\tau(t) \to 0^{+}$ — a pursuit's urgency
+  accelerates automatically as the week closes on it, with no
+  re-planning required. This is the whole mechanism behind "pacing up":
+  it's not a heuristic bolted on top, it's what the ratio does.
 - **Self-correction, not debt.** $d_i$ resets with the week rather than
   carrying a rolling balance forward. A missed week raises $r_i$ for
   the *next* week's first observation only through $q_i$ itself, never
@@ -110,11 +116,11 @@ The **pace marker** on each progress bar is the visual residue of the
 same idea at the single-pursuit level — it plots the elapsed-week
 fraction
 $\varepsilon(t) = (t - w_{\mathrm{start}}) / (w_{\mathrm{end}} - w_{\mathrm{start}})$
-against $d_i(t)/q_i$. It is, quite literally, a gnomon: the marker plays
-the role of the sundial's rod, and the filled bar is its shadow. Where
-the shadow falls short of the rod, you are behind; where it overtakes
-it, you are ahead. $r_i(t)$ is simply the instantaneous slope this
-comparison demands for the remainder of the week.
+against $\tilde{d}_i(t)/q_i$. It is, quite literally, a gnomon: the
+marker plays the role of the sundial's rod, and the filled bar is its
+shadow. Where the shadow falls short of the rod, you are behind; where
+it overtakes it, you are ahead. $r_i(t)$ is simply the instantaneous
+slope this comparison demands for the remainder of the week.
 
 ## What it deliberately doesn't do
 
@@ -151,9 +157,10 @@ npx esbuild app.jsx --loader:.jsx=jsx \
   --minify --target=es2018 --outfile=app.js
 ```
 
-If you change the cache version in `sw.js` (`CACHE = 'kairos-vN'`),
-bump it on every deploy — otherwise returning users will keep getting
-the previous build from the service worker cache.
+The service worker is network-first: when you're online it always pulls
+the latest files and refreshes the offline cache; when you're offline it
+serves whatever was last successfully fetched. No cache-version bumps
+on deploy.
 
 ## Data and privacy
 
