@@ -1,5 +1,5 @@
 // Cache-first shell so the app opens instantly and works with no signal.
-const CACHE = 'kairos-v1';
+const CACHE = 'kairos-v3';
 const SHELL = ['./', './index.html', './app.js', './react.js', './react-dom.js',
                './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 

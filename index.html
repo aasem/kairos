@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#0C1214">
+<script>(function(){try{var t=localStorage.getItem("kairos-theme-v1");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="light"?"#F2F5F4":"#0C1214";}catch(e){}})();</script>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,7 +16,29 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { margin: 0; padding: 0; height: 100%; background: #0C1214; overscroll-behavior: none; }
+  :root, [data-theme="dark"] {
+    --bg: #0C1214;
+    --bg-2: #121A1D;
+    --line: #222E32;
+    --text: #E6E9E6;
+    --mute: #6E7C80;
+    --on-accent: #0C1214;
+    --glow-alpha: .16;
+    --fill-opacity: .9;
+    color-scheme: dark;
+  }
+  [data-theme="light"] {
+    --bg: #F2F5F4;
+    --bg-2: #E5EBE9;
+    --line: #C9D2CF;
+    --text: #121A1C;
+    --mute: #5A6A6E;
+    --on-accent: #0C1214;
+    --glow-alpha: .2;
+    --fill-opacity: .55;
+    color-scheme: light;
+  }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); overscroll-behavior: none; transition: background .35s ease, color .35s ease; }
   body { font-family: 'Archivo', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   #root {
     min-height: 100%;
@@ -24,7 +47,7 @@
   }
   button { font-family: inherit; }
   input { font-family: inherit; }
-  ::selection { background: #4E8C74; color: #0C1214; }
+  ::selection { background: #4E8C74; color: var(--on-accent); }
   @keyframes breathe { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
   @keyframes rise { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
   @keyframes grow { from { transform: scaleY(0) } to { transform: scaleY(1) } }
