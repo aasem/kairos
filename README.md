@@ -57,7 +57,7 @@ doing before reading a single number.
 ## The formalism
 
 Let there be $n$ pursuits $X_1, \dots, X_n$. Each $X_i$ carries a weekly
-quota $q_i$ (minutes) and a static tie-break priority $p_i \in \mathbb{Z}^+$.
+quota $q_i$ (minutes) and a static tie-break priority $p_i \in \mathbb{Z}^{+}$.
 Let $d_i(t)$ be the cumulative minutes logged against $X_i$ within the
 current ISO week as of time $t$.
 
@@ -65,7 +65,7 @@ At any moment $t$, with $\tau(t)$ the minutes remaining until the week's
 close, define the **deficit rate**
 
 $$
-r_i(t) \;=\; \frac{q_i - d_i(t)}{\tau(t)}.
+r_i(t) = \frac{q_i - d_i(t)}{\tau(t)}.
 $$
 
 This is not merely "how far behind" — $q_i - d_i(t)$ alone is a raw
@@ -81,21 +81,21 @@ on the same scale and can be honestly ranked against each other.
 Kairos always surfaces
 
 $$
-X^{*}(t) \;=\; \operatorname*{arg\,max}_{i} \; r_i(t),
+X^{*}(t) = \underset{i}{\arg\max}\; r_i(t),
 $$
 
 breaking ties (within a small tolerance $\varepsilon$, since floating
 deficits are rarely exactly equal) by ascending $p_i$:
 
 $$
-i \sim_\varepsilon j \iff |r_i(t) - r_j(t)| < \varepsilon
+i \sim_{\varepsilon} j \iff \lvert r_i(t) - r_j(t) \rvert < \varepsilon
 \quad\Longrightarrow\quad i \prec j \iff p_i < p_j.
 $$
 
 Two structural properties fall out for free:
 
 - **Monotonicity under neglect.** For fixed $d_i$, $r_i(t)$ is strictly
-  increasing as $\tau(t) \to 0^+$ — a pursuit's urgency accelerates
+  increasing as $\tau(t) \to 0^{+}$ — a pursuit's urgency accelerates
   automatically as the week closes on it, with no re-planning required.
   This is the whole mechanism behind "pacing up": it's not a heuristic
   bolted on top, it's what the ratio does.
@@ -108,13 +108,13 @@ Two structural properties fall out for free:
 
 The **pace marker** on each progress bar is the visual residue of the
 same idea at the single-pursuit level — it plots the elapsed-week
-fraction $\varepsilon(t) = (t - w_{\text{start}})/(w_{\text{end}} -
-w_{\text{start}})$ against $d_i(t)/q_i$. It is, quite literally, a
-gnomon: the marker plays the role of the sundial's rod, and the filled
-bar is its shadow. Where the shadow falls short of the rod, you are
-behind; where it overtakes it, you are ahead. $r_i(t)$ is simply the
-instantaneous slope this comparison demands for the remainder of the
-week.
+fraction
+$\varepsilon(t) = (t - w_{\mathrm{start}}) / (w_{\mathrm{end}} - w_{\mathrm{start}})$
+against $d_i(t)/q_i$. It is, quite literally, a gnomon: the marker plays
+the role of the sundial's rod, and the filled bar is its shadow. Where
+the shadow falls short of the rod, you are behind; where it overtakes
+it, you are ahead. $r_i(t)$ is simply the instantaneous slope this
+comparison demands for the remainder of the week.
 
 ## What it deliberately doesn't do
 
@@ -182,9 +182,6 @@ writing, I'd like to hear what changed and what didn't.
 
 ## License
 
-MIT. Use it, fork it, rename it back to whatever you like.
+MIT. Use it, fork it, rename it — and if it helps you, a quiet credit back here would mean a lot.
 
 ---
-
-*Built by [Asim D. Bakhshi](https://aasem.github.io) — machine learning
-and NLP by trade, Urdu prose and translation by the rest of the week.*
