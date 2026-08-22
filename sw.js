@@ -1,11 +1,12 @@
 // Network-first shell: online always gets the latest files; offline falls back
-// to whatever was last successfully fetched. No manual cache version bumps.
-const CACHE = 'kairos-v3';
-const SHELL = ['./', './index.html', './app.js', './react.js', './react-dom.js',
-               './manifest.webmanifest', './icon.svg', './icon-dark.svg',
-               './icon-192.png', './icon-512.png',
-               './icon-192-maskable.png', './icon-512-maskable.png',
-               './favicon-16.png', './favicon-32.png', './apple-touch-icon-180.png'];
+// to whatever was last successfully fetched. Bump CACHE when assets change.
+const CACHE = 'kairos-v4';
+const SHELL = ['./', './index.html', './app.js?v=4', './react.js', './react-dom.js',
+               './manifest.webmanifest?v=4', './icon.svg', './icon-dark.svg',
+               './icon-192.png?v=4', './icon-512.png?v=4',
+               './icon-192-maskable.png?v=4', './icon-512-maskable.png?v=4',
+               './favicon-16.png?v=4', './favicon-32.png?v=4',
+               './apple-touch-icon-180.png?v=4'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(

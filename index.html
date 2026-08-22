@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#1C1B17">
-<script>(function(){try{var t=localStorage.getItem("kairos-theme-v1");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="light"?"#F3EDE1":"#1C1B17";var f=document.querySelector('link[data-favicon-svg]');if(f)f.href=(t==="light"?"icon.svg":"icon-dark.svg")+"?v=3";}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem("kairos-theme-v1");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="light"?"#F3EDE1":"#1C1B17";var f=document.querySelector('link[data-favicon-svg]');if(f)f.href=(t==="light"?"icon.svg":"icon-dark.svg")+"?v=4";}catch(e){}})();</script>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="robots" content="noindex, nofollow">
 <title>Kairos</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="favicon-32.png?v=3" sizes="32x32">
-<link rel="icon" href="favicon-16.png?v=3" sizes="16x16">
-<link rel="icon" data-favicon-svg href="icon.svg?v=3" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=3">
+<link rel="manifest" href="manifest.webmanifest?v=4">
+<link rel="icon" href="favicon-32.png?v=4" sizes="32x32">
+<link rel="icon" href="favicon-16.png?v=4" sizes="16x16">
+<link rel="icon" data-favicon-svg href="icon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=4">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -79,11 +79,11 @@
 </div>
 <script src="react.js"></script>
 <script src="react-dom.js"></script>
-<script src="app.js"></script>
+<script src="app.js?v=4"></script>
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js?v=3').then(function (reg) {
+      navigator.serviceWorker.register('sw.js?v=4').then(function (reg) {
         reg.update();
         reg.addEventListener('updatefound', function () {
           var worker = reg.installing;
