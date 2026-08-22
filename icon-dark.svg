@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <circle cx="100" cy="100" r="86" fill="none" stroke="#F3EDE1" stroke-width="5"></circle>
-  <circle cx="100" cy="100" r="52" fill="none" stroke="#F3EDE1" stroke-width="2.4"></circle>
-  <path d="M 63 137 A 52 52 0 0 1 100 48" fill="none" stroke="#F3EDE1" stroke-width="15" stroke-linecap="round"></path>
-  <circle cx="126" cy="56" r="7" fill="#9C3B23"></circle>
+    <circle cx="100" cy="100" r="88" fill="none" stroke="#F3EDE1" stroke-width="5"></circle>
+    <g transform="translate(96 100) scale(0.82) translate(-100 -100)">
+      <g fill="#F3EDE1"><circle cx="106" cy="61" r="10"></circle><path d="M 105 54 L 127 47 Q 116 52 111 61 Z"></path><path d="M 95 70 L 118 73 L 112 103 L 99 101 Z"></path></g>
+      <g stroke="#F3EDE1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 114 77 L 134 68" stroke-width="7"></path><path d="M 97 76 L 82 91" stroke-width="6"></path>
+        <path d="M 110 100 L 122 119 L 128 135" stroke-width="9"></path><path d="M 100 101 L 85 121 L 76 134" stroke-width="8"></path></g>
+      <g fill="#F3EDE1"><path d="M 78 129 L 54 118 L 76 134 Z"></path><path d="M 78 135 L 56 132 L 76 139 Z"></path></g>
+    </g>
+    <path d="M 63 137 A 52 52 0 0 1 100 48" fill="none" stroke="#F3EDE1" stroke-width="12" stroke-linecap="round"></path>
+    <circle cx="128" cy="54" r="6.5" fill="#9C3B23"></circle>
 </svg>

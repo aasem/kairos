@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#1C1B17">
-<script>(function(){try{var t=localStorage.getItem("kairos-theme-v1");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="light"?"#F3EDE1":"#1C1B17";var f=document.querySelector('link[data-favicon-svg]');if(f)f.href=(t==="light"?"icon.svg":"icon-dark.svg")+"?v=4";}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem("kairos-theme-v1");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="light"?"#F3EDE1":"#1C1B17";var light=t==="light",v="?v=5",svg=light?"icon.svg":"icon-dark.svg",f=document.querySelector('link[data-favicon-svg]');if(f)f.href=svg+v;var f16=document.querySelector('link[data-favicon-16]');if(f16)f16.href=(light?"favicon-16.png":"favicon-16-dark.png")+v;var f32=document.querySelector('link[data-favicon-32]');if(f32)f32.href=(light?"favicon-32.png":"favicon-32-dark.png")+v;var b=document.getElementById("boot-mark");if(b)b.src=svg+v;}catch(e){}})();</script>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="robots" content="noindex, nofollow">
 <title>Kairos</title>
-<link rel="manifest" href="manifest.webmanifest?v=4">
-<link rel="icon" href="favicon-32.png?v=4" sizes="32x32">
-<link rel="icon" href="favicon-16.png?v=4" sizes="16x16">
-<link rel="icon" data-favicon-svg href="icon.svg?v=4" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=4">
+<link rel="manifest" href="manifest.webmanifest?v=5">
+<link rel="icon" data-favicon-32 href="favicon-32.png?v=5" sizes="32x32">
+<link rel="icon" data-favicon-16 href="favicon-16.png?v=5" sizes="16x16">
+<link rel="icon" data-favicon-svg href="icon.svg?v=5" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=5">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -69,21 +69,16 @@
 <body>
 <div id="root">
   <div class="boot" aria-hidden="true">
-    <svg class="boot-mark" viewBox="0 0 200 200" width="52" height="52" fill="none" aria-hidden="true">
-      <circle cx="100" cy="100" r="86" stroke="currentColor" stroke-width="6.75"/>
-      <circle cx="100" cy="100" r="52" stroke="currentColor" stroke-width="3.24"/>
-      <path d="M 63 137 A 52 52 0 0 1 100 48" stroke="currentColor" stroke-width="20.25" stroke-linecap="round"/>
-      <circle cx="126" cy="56" r="7" fill="#9C3B23"/>
-    </svg>
+    <img id="boot-mark" class="boot-mark" src="icon-dark.svg?v=5" width="56" height="56" alt="">
   </div>
 </div>
 <script src="react.js"></script>
 <script src="react-dom.js"></script>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js?v=4').then(function (reg) {
+      navigator.serviceWorker.register('sw.js?v=5').then(function (reg) {
         reg.update();
         reg.addEventListener('updatefound', function () {
           var worker = reg.installing;
