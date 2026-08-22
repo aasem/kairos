@@ -1,8 +1,9 @@
 // Network-first shell: online always gets the latest files; offline falls back
 // to whatever was last successfully fetched. No manual cache version bumps.
-const CACHE = 'kairos';
+const CACHE = 'kairos-v2';
 const SHELL = ['./', './index.html', './app.js', './react.js', './react-dom.js',
-               './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png',
+               './manifest.webmanifest', './icon.svg', './icon-dark.svg',
+               './icon-192.png', './icon-512.png',
                './icon-192-maskable.png', './icon-512-maskable.png',
                './favicon-16.png', './favicon-32.png', './apple-touch-icon-180.png'];
 

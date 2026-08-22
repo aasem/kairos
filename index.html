@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="theme-color" content="#1C1B17">
-<script>(function(){try{var t=localStorage.getItem("kairos-theme-v1");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="light"?"#F3EDE1":"#1C1B17";}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem("kairos-theme-v1");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="light"?"#F3EDE1":"#1C1B17";var f=document.querySelector('link[data-favicon-svg]');if(f)f.href=(t==="light"?"icon.svg":"icon-dark.svg")+"?v=2";}catch(e){}})();</script>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="robots" content="noindex, nofollow">
 <title>Kairos</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="favicon-32.png" sizes="32x32">
-<link rel="icon" href="favicon-16.png" sizes="16x16">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon-180.png">
+<link rel="icon" href="favicon-32.png?v=2" sizes="32x32">
+<link rel="icon" href="favicon-16.png?v=2" sizes="16x16">
+<link rel="icon" data-favicon-svg href="icon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon-180.png?v=2">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -48,6 +48,15 @@
     display: flex; flex-direction: column;
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
+  .boot {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: var(--text);
+  }
+  .boot-mark { animation: breathe 1.8s ease-in-out infinite; }
   button { font-family: inherit; }
   input { font-family: inherit; }
   ::selection { background: #4E8C74; color: var(--on-accent); }
@@ -58,7 +67,16 @@
 </style>
 </head>
 <body>
-<div id="root"></div>
+<div id="root">
+  <div class="boot" aria-hidden="true">
+    <svg class="boot-mark" viewBox="0 0 200 200" width="52" height="52" fill="none" aria-hidden="true">
+      <circle cx="100" cy="100" r="86" stroke="currentColor" stroke-width="6.75"/>
+      <circle cx="100" cy="100" r="52" stroke="currentColor" stroke-width="3.24"/>
+      <path d="M 63 137 A 52 52 0 0 1 100 48" stroke="currentColor" stroke-width="20.25" stroke-linecap="round"/>
+      <circle cx="126" cy="56" r="7" fill="#9C3B23"/>
+    </svg>
+  </div>
+</div>
 <script src="react.js"></script>
 <script src="react-dom.js"></script>
 <script src="app.js"></script>
