@@ -22,17 +22,20 @@ In modern time management, the collision of Chronos and Kairos
 represents the tension between efficiency (doing things fast) and
 effectiveness (doing the right things at the right moment). *Kairos*
 (καιρός) is the opportune, unscheduled moment; *chronos* is sequential
-clock-time. Apply their mythological traits to hobbies, pursuits, and
-multitasking, and the ancient gods become perfect metaphors for how we
-spend our energy.
+clock-time. In Greek myth they appear as contrasting figures — one the
+devouring Titan who ruled measured time, one the fleeting youth who
+embodies the chance that passes if you look away. Used as psychological
+metaphors, they describe two modes of spending attention, not objects of
+belief.
 
 This app is named for Kairos, but it does not pretend Chronos doesn't
-exist. Weekly quotas are Chronos's tribute; the ranking tells you which
-pursuit most needs a Kairos moment *right now*.
+exist. Weekly quotas are the Chronos layer — structure you agree to in
+advance; the ranking tells you which pursuit most needs a Kairos moment
+*right now*.
 
 ### The mythological meeting point
 
-| Time management challenge | The Chronos approach (the devouring titan) | The Kairos approach (the fleeting youth) |
+| Time management challenge | The Chronos mode (measured, sequential) | The Kairos mode (opportune, unscheduled) |
 |---|---|---|
 | The core philosophy | "How much can I fit into this hour?" | "Is this the perfect moment to do this?" |
 | Hobbies & creative work | Tracking hours spent practicing an instrument. | Entering a state of flow where clock time vanishes. |
@@ -41,37 +44,40 @@ pursuit most needs a Kairos moment *right now*.
 
 ### Hobbies and pursuits: grind vs. flow
 
-Balancing both gods is the secret to mastery.
+Mastery needs both modes.
 
-- **Chronos builds the foundation.** Mastery demands a repetitive block
-  of clock time every day — Chronos's scythe clearing away distractions.
+- **Chronos builds the foundation.** Skill demands a repetitive block of
+  clock time every day — the myth's scythe as an image for clearing away
+  distraction, not mysticism.
 - **Kairos delivers the breakthrough.** You cannot force inspiration; it
-  arrives inside the container Chronos built.
-- **The meeting point.** Without Chronos's routine, you never practice.
-  Without Kairos's inspiration, the hobby feels like a mechanical chore.
+  tends to arrive inside the structure Chronos provides.
+- **The meeting point.** Without routine, you never practice. Without
+  opportune depth, the hobby becomes mechanical.
 
 ### Multitasking: the ultimate clash
 
-Multitasking cheats Chronos and insults Kairos.
+Multitasking tries to stretch clock-time while destroying the focus
+that opportune moments require.
 
-- **Chronos's trap.** Stretching clock time across tasks triggers
+- **The Chronos trap.** Stretching measured time across tasks triggers
   cognitive switching costs; you save nothing.
-- **Kairos's revenge.** Kairos is bald in the back — multitasking means
-  you miss the opportune moment entirely because your attention was
-  elsewhere.
-- **The meeting point.** Monotask. One Chronos block, one pursuit, the
-  focus required to seize a Kairos moment of deep insight.
+- **The Kairos image.** In myth, Kairos is bald in the back — you can
+  grasp him only as he arrives. Divided attention means that moment
+  passes unseen.
+- **The meeting point.** Monotask. One block, one pursuit, the narrow
+  focus where insight actually lands.
 
 ### Shifting your mindset
 
-Calendar overwhelm is **Chronos sickness** — the Titan devouring his
-children. The antidote is **Kairos blocks**: unstructured hours with no
-alarm, no progress tracking, and no multitasking — just choosing the
-pursuit that feels exactly right for that moment.
+Calendar overwhelm is **Chronos overload** — the myth's warning that
+measured time, unchecked, consumes the life it was meant to organise.
+The counterweight is a **Kairos block**: unstructured hours with no alarm,
+no progress tracking, and no multitasking — just choosing the pursuit
+that feels exactly right for that moment.
 
-The app lives at that boundary: you pay Chronos once per pursuit (a
-weekly quota), and whenever a pocket opens, it surfaces the one furthest
-behind so you can monotask without deciding from scratch.
+The app lives at that boundary: you set the Chronos layer once per
+pursuit (a weekly quota), and whenever a pocket opens, it surfaces the
+one furthest behind so you can monotask without deciding from scratch.
 
 ---
 
