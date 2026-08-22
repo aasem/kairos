@@ -124,7 +124,7 @@ neglected since Monday:
 $$
 c_i =
 \begin{cases}
-q_i \cdot \dfrac{t_i^0 - w_{\text{start}}}{w_{\text{end}} - w_{\text{start}}} & \text{if } w_{\text{start}} < t_i^0 < w_{\text{end}} \\[4pt]
+q_i \cdot \frac{t_i^0 - w_{\text{start}}}{w_{\text{end}} - w_{\text{start}}} & \text{if } w_{\text{start}} < t_i^0 < w_{\text{end}} \\[4pt]
 0 & \text{otherwise}
 \end{cases}
 $$
@@ -161,7 +161,7 @@ that ceiling.
 Kairos surfaces
 
 $$
-X^{*}(t) = \operatorname*{arg\,max}_i \; r_i(t)
+X^{*}(t) = \max_{i} r_i(t)
 $$
 
 breaking near-ties (rate difference under $0.02$) by `createdAt`
@@ -173,7 +173,7 @@ $$
 \text{heat}_i(t) =
 \begin{cases}
 0 & \tilde d_i(t) \geq q_i \quad \text{(quota already met)} \\
-\min\!\left(1,\ \dfrac{r_i(t)}{1.6}\right) & \text{otherwise}
+\min\!\left(1,\ \frac{r_i(t)}{1.6}\right) & \text{otherwise}
 \end{cases}
 $$
 
@@ -220,7 +220,7 @@ before Monday?" — so order can differ from the home screen.
 ### What this is, formally
 
 The home-screen ranking is a **greedy, single-step priority rule** —
-$\arg\max r_i(t)$ evaluated fresh on each render. No lookahead, no model
+$\max_i r_i(t)$ evaluated fresh on each render. No lookahead, no model
 of how many pockets remain before the week ends. Given that pocket
 arrival is unpredictable by the app's own premise, a myopic rule is the
 right level of ambition.
