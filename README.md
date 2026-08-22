@@ -258,9 +258,20 @@ files; offline, it serves whatever was last fetched successfully.
 ## Data and privacy
 
 Everything lives in `localStorage` on your device under this origin.
-Nothing is transmitted anywhere; clearing site data erases the history.
-JSON export/import would be the natural next step and a welcome
-contribution.
+Nothing is transmitted anywhere.
+
+**Backup (Edit screen).** Use **EXPORT JSON** to save pursuits and
+session history to a file. **IMPORT** restores from a backup. Do this
+before clearing site data or reinstalling the app — browser "clear data"
+wipes storage and cannot be undone from inside Kairos.
+
+Normal app updates (opening the site while online) refresh cached files
+without touching your data. Only a deliberate site-data clear, or
+reinstalling without a backup, loses history.
+
+**Home-screen icon.** The splash image on an installed copy is fixed at
+install time. To update it, export a backup, remove the app from your
+home screen, open the site in the browser, then install again and import.
 
 ## Known gaps, honestly
 
@@ -279,7 +290,6 @@ contribution.
 Issues and pull requests welcome, particularly:
 
 - Reconciling the home-screen and Stats ranking formulas
-- JSON export/import for backup and cross-device use
 - Accessibility (keyboard navigation, screen-reader labelling)
 
 ## License
