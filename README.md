@@ -96,7 +96,29 @@ $$
 X^{*}(t) = \underset{i}{\arg\max}\; r_i(t),
 $$
 
-breaking near-ties by creation order (older first).
+breaking near-ties (rate difference below a small $\varepsilon$) by
+creation order, older first.
+
+The home-screen status line shows a related but different quantity: the
+**week-so-far shortfall** against a linear schedule,
+
+$$
+s_i(t) = q_i \cdot \varepsilon(t) - \tilde{d}_i(t),
+\quad
+\varepsilon(t) = \frac{t - w_{\mathrm{start}}}{w_{\mathrm{end}} - w_{\mathrm{start}}},
+$$
+
+and the catch-up load implied by the deficit rate,
+
+$$
+\frac{q_i - \tilde{d}_i(t)}{\text{days remaining}}
+\;=\;
+r_i(t) \cdot (24 \times 60).
+$$
+
+So "$s$ SHORT OF WEEK PACE" is the lump gap versus where you should
+already be; "$\cdot$/DAY TO CATCH" is $r_i$ expressed as minutes per
+remaining day — not the same number.
 
 Two structural properties fall out for free:
 
@@ -113,14 +135,13 @@ Two structural properties fall out for free:
   tool exists to prevent.
 
 The **pace marker** on each progress bar is the visual residue of the
-same idea at the single-pursuit level — it plots the elapsed-week
-fraction
-$\varepsilon(t) = (t - w_{\mathrm{start}}) / (w_{\mathrm{end}} - w_{\mathrm{start}})$
+same idea at the single-pursuit level — it plots $\varepsilon(t)$
 against $\tilde{d}_i(t)/q_i$. It is, quite literally, a gnomon: the
 marker plays the role of the sundial's rod, and the filled bar is its
-shadow. Where the shadow falls short of the rod, you are behind; where
-it overtakes it, you are ahead. $r_i(t)$ is simply the instantaneous
-slope this comparison demands for the remainder of the week.
+shadow. Where the shadow falls short of the rod ($s_i > 0$), you are
+behind; where it overtakes it, you are ahead. $r_i(t)$ is simply the
+instantaneous slope this comparison demands for the remainder of the
+week.
 
 ## What it deliberately doesn't do
 
