@@ -1,7 +1,7 @@
 // Network-first shell: online always gets the latest files; offline falls back
 // to whatever was last successfully fetched. Bump CACHE when assets change.
-const CACHE = 'kairos-v7';
-const SHELL = ['./', './index.html', './app.js?v=7', './react.js', './react-dom.js',
+const CACHE = 'kairos-v9';
+const SHELL = ['./', './index.html', './app.js?v=9', './react.js', './react-dom.js',
                './manifest.webmanifest?v=5', './icon.svg?v=5', './icon-dark.svg?v=5',
                './icon-192.png?v=5', './icon-512.png?v=5',
                './icon-192-maskable.png?v=5', './icon-512-maskable.png?v=5',
