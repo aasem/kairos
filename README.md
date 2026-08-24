@@ -98,9 +98,9 @@ one furthest behind so you can monotask without deciding from scratch.
   you're ahead; short of it, you're behind.
 - **Stats** (7 / 30 / 180 days) show total logged time, a daily/weekly
   bar chart, and a per-pursuit breakdown against a prorated plan.
-- **Colour** (pine → brass → rust) reflects urgency on both the home
-  screen and the rail; it is derived from the same ranking key described
-  below.
+- **Colour** is a discrete trio shared by the home screen and the rail:
+  green (ahead / quota met), amber (on pace), crimson (behind). It follows
+  week-pace minutes, not the continuous ranking key.
 
 ## How ranking works
 
@@ -154,8 +154,8 @@ $$
 
 $r_i(t) = 1$ means on pace to finish at the deadline if nothing changes.
 Above 1, the gap is widening; below 1, you have slack. The cap at 4
-limits colour saturation only — it does not affect sort order below
-that ceiling.
+is only a numerical ceiling on the ranking key — it does not affect
+sort order below that ceiling, and colour no longer reads from $r_i$.
 
 Kairos surfaces the pursuit with the highest deficit rate:
 
@@ -166,22 +166,9 @@ $$
 breaking near-ties (rate difference under 0.02) by `createdAt`
 ascending, then by id.
 
-**Colour** (`heat` in code, written $h_i$ here) comes from the same
-$r_i(t)$:
-
-$$
-h_i(t) =
-\begin{cases}
-0 & \tilde{d}_i(t) \geq q_i \\[4pt]
-\min\left(1,\ \frac{r_i(t)}{1.6}\right) & \text{otherwise}
-\end{cases}
-$$
-
-mapped through pine → brass → rust at $h_i = 0,\ 0.5,\ 1$.
-
-**On-screen status line** uses simpler raw-minute quantities, not
-$r_i(t)$. Write $\varepsilon(t) = (t - w_s)/(w_e - w_s)$ for the fraction
-of the week elapsed:
+**Colour and status** use simpler raw-minute quantities, not $r_i(t)$.
+Write $\varepsilon(t) = (t - w_s)/(w_e - w_s)$ for the fraction of the
+week elapsed:
 
 $$
 b_i(t) = q_i \cdot \varepsilon(t) - \tilde{d}_i(t)
@@ -191,10 +178,24 @@ $$
 k_i(t) = \max\left(0,\ \frac{q_i - \tilde{d}_i(t)}{d_{\mathrm{rem}}}\right)
 $$
 
-where $d_{\mathrm{rem}}$ is days remaining in the week. On screen these
-appear as plain copy — e.g. **37 SHORT OF WEEK PACE** and **12/DAY TO
-CATCH** — because raw minutes are easier to act on mid-pocket than a
-dimensionless ratio, even though $r_i(t)$ is what picked this pursuit.
+where $d_{\mathrm{rem}}$ is days remaining in the week. Pace band
+(`heat` in code: $0$ / $0.5$ / $1$) is discrete:
+
+$$
+h_i(t) =
+\begin{cases}
+0 & \tilde{d}_i(t) \geq q_i \ \text{or}\ b_i(t) < -1 \\[4pt]
+1 & b_i(t) > 1 \\[4pt]
+0.5 & \text{otherwise}
+\end{cases}
+$$
+
+mapped to green / amber / crimson. The same band colours the focused
+home shell, GO, status line, and every rail tile. On-screen copy matches
+the band — e.g. **AHEAD OF WEEK PACE**, **ON PACE**, **37 SHORT OF WEEK
+PACE · 12/DAY TO CATCH**, or **QUOTA MET** — because raw minutes are
+easier to act on mid-pocket than a dimensionless ratio, even though
+$r_i(t)$ is what ranked this pursuit first.
 
 ### Stats screen: a different formula
 
