@@ -99,8 +99,11 @@ one furthest behind so you can monotask without deciding from scratch.
 - **Stats** (7 / 30 / 180 days) show total logged time, a daily/weekly
   bar chart, and a per-pursuit breakdown against a prorated plan.
 - **Colour** is a discrete trio shared by the home screen and the rail:
-  green (ahead / quota met), amber (on pace), crimson (behind). It follows
-  week-pace minutes, not the continuous ranking key.
+  green (fine), amber (slipping), crimson (dropped). Bands are hard steps
+  at one and two days of that pursuit's weekly quota — not a spectrum,
+  and not the ranking key. Rail tiles add a bottom-up fill at this week's
+  progress and a rank ordinal; the left column shows a band census and
+  a one-line rank cue.
 
 ## How ranking works
 
@@ -179,23 +182,30 @@ k_i(t) = \max\left(0,\ \frac{q_i - \tilde{d}_i(t)}{d_{\mathrm{rem}}}\right)
 $$
 
 where $d_{\mathrm{rem}}$ is days remaining in the week. Pace band
-(`heat` in code: $0$ / $0.5$ / $1$) is discrete:
+(`heat` in code: $0$ / $0.5$ / $1$) is a hard step at one and two days
+of quota ($q_i/7$ and $2q_i/7$), not a hue interpolation:
 
 $$
 h_i(t) =
 \begin{cases}
-0 & \tilde{d}_i(t) \geq q_i \ \text{or}\ b_i(t) < -1 \\[4pt]
-1 & b_i(t) > 1 \\[4pt]
+0 & \tilde{d}_i(t) \geq q_i \ \text{or}\ b_i(t) \le q_i/7 \\[4pt]
+1 & b_i(t) > 2q_i/7 \\[4pt]
 0.5 & \text{otherwise}
 \end{cases}
 $$
 
 mapped to green / amber / crimson. The same band colours the focused
-home shell, GO, status line, and every rail tile. On-screen copy matches
-the band — e.g. **AHEAD OF WEEK PACE**, **ON PACE**, **37 SHORT OF WEEK
-PACE · 12/DAY TO CATCH**, or **QUOTA MET** — because raw minutes are
-easier to act on mid-pocket than a dimensionless ratio, even though
-$r_i(t)$ is what ranked this pursuit first.
+home shell, GO, status line, and every rail tile. Tile *fill height*
+is $\tilde{d}_i / q_i$ (this week's progress); rail order and ordinals
+still follow $r_i(t)$, so colour and rank can disagree. On-screen copy
+matches the band — **QUOTA MET**, **AHEAD OF WEEK PACE**, **ON PACE**,
+amber **37 SHORT OF WEEK PACE**, or crimson **37 SHORT OF WEEK PACE ·
+12/DAY TO CATCH**. A mute census under the week totals counts the set
+(**2 DROPPED · 3 SLIPPING · 4 FINE**, or **9 ON PACE**); a rank cue
+above the name reads **FURTHEST BEHIND**, **LEAST SLACK**, or
+**3 OF 9 · FURTHEST IS NAME**. Raw minutes are easier to act on
+mid-pocket than a dimensionless ratio, even though $r_i(t)$ is what
+ranked this pursuit first.
 
 ### Stats screen: a different formula
 
