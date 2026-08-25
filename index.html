@@ -26,8 +26,8 @@
     --text: #E6E9E6;
     --mute: #6E7C80;
     --on-accent: #0C1214;
-    --glow-alpha: .16;
-    --fill-opacity: .9;
+    --glow-alpha: .3;
+    --rail-alpha: .7;
     color-scheme: dark;
   }
   [data-theme="light"] {
@@ -37,8 +37,8 @@
     --text: #121A1C;
     --mute: #5A6A6E;
     --on-accent: #0C1214;
-    --glow-alpha: .2;
-    --fill-opacity: .55;
+    --glow-alpha: .4;
+    --rail-alpha: .88;
     color-scheme: light;
   }
   html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); overscroll-behavior: none; transition: background .35s ease, color .35s ease; }
@@ -74,11 +74,11 @@
 </div>
 <script src="react.js"></script>
 <script src="react-dom.js"></script>
-<script src="app.js?v=11"></script>
+<script src="app.js?v=12"></script>
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js?v=11').then(function (reg) {
+      navigator.serviceWorker.register('sw.js?v=12').then(function (reg) {
         reg.update();
         reg.addEventListener('updatefound', function () {
           var worker = reg.installing;
