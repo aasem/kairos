@@ -91,6 +91,9 @@ one furthest behind so you can monotask without deciding from scratch.
 - **New pursuits get a birth credit.** Adding one mid-week doesn't treat
   it as neglected since Monday — only the time since it was created
   counts against it.
+- **Surplus carries; deficit does not.** Time logged above last week's
+  quota starts the new week already counted. A shortfall dies at Monday
+  00:00 — you never owe a missed week.
 - **GO starts a timer. DONE logs it.** No categories, no manual time
   entry. A session is just a timestamped start and end.
 - **The pace marker** on the progress bar shows where you'd be if you
@@ -131,7 +134,20 @@ q_i \cdot \frac{t_i^0 - w_s}{w_e - w_s} & \text{if } w_s < t_i^0 < w_e \\[4pt]
 \end{cases}
 $$
 
-Effective progress is $\tilde{d}_i(t) = d_i(t) + c_i$.
+**Surplus carry.** Deficit is forgiven at each Monday; only overshoot
+banks. Walk every completed ISO week $k$ from the week of $t_i^0$
+(or the first session, if earlier) up to last week, with $\sigma_i^{(0)}=0$:
+
+$$
+\sigma_i^{(k+1)} = \max\!\left(0,\ d_i^{(k)} + c_i^{(k)} + \sigma_i^{(k)} - q_i\right)
+$$
+
+where $d_i^{(k)}$ and $c_i^{(k)}$ are minutes logged and birth credit
+in week $k$. Unused banked time is consumed against later quotas; a
+short week still drops any remaining gap. $\sigma_i$ is last week's
+outgoing surplus — the incoming credit for the current week.
+
+Effective progress is $\tilde{d}_i(t) = d_i(t) + c_i + \sigma_i$.
 
 **Deficit fraction** — outstanding quota as a share of $q_i$ itself
 (comparable across pursuits of different sizes):
@@ -293,6 +309,8 @@ home screen, open the site in the browser, then install again and import.
   neglected pursuits can look equally urgent.
 - **Birth credit.** Computed once from `createdAt`; editing quota
   mid-week does not adjust it retroactively.
+- **Surplus carry.** Past weeks are replayed with the *current* quota,
+  so editing quota also rewrites how much surplus those weeks banked.
 - **No lookahead.** The greedy rule cannot reason about whether working
   on one pursuit now will cause another to miss quota later.
 
