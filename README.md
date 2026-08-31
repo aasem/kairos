@@ -102,11 +102,12 @@ one furthest behind so you can monotask without deciding from scratch.
 - **Stats** (7 / 30 / 180 days) show total logged time, a daily/weekly
   bar chart, and a per-pursuit breakdown against a prorated plan.
 - **Colour** is a discrete trio shared by the home screen and the rail:
-  green (fine), amber (slipping), crimson (dropped). Bands are hard steps
-  at one and two days of that pursuit's weekly quota — not a spectrum,
-  and not the ranking key. Rail tiles add a bottom-up fill at this week's
-  progress and a rank ordinal; the left column shows a band census and
-  a one-line rank cue.
+  green (fine), amber (slipping), crimson (dropped). Green means at or
+  ahead of this week's linear pace (or quota already met); amber means
+  behind that pace; crimson means more than one day of quota behind.
+  Not a spectrum, and not the ranking key. Rail tiles add a bottom-up
+  fill at this week's progress and a rank ordinal; the left column shows
+  a band census and a one-line rank cue.
 
 ## How ranking works
 
@@ -198,14 +199,14 @@ k_i(t) = \max\left(0,\ \frac{q_i - \tilde{d}_i(t)}{d_{\mathrm{rem}}}\right)
 $$
 
 where $d_{\mathrm{rem}}$ is days remaining in the week. Pace band
-(`heat` in code: $0$ / $0.5$ / $1$) is a hard step at one and two days
-of quota ($q_i/7$ and $2q_i/7$), not a hue interpolation:
+(`heat` in code: $0$ / $0.5$ / $1$) is a hard step at the pace marker
+and at one day of quota ($q_i/7$), not a hue interpolation:
 
 $$
 h_i(t) =
 \begin{cases}
-0 & \tilde{d}_i(t) \geq q_i \ \text{or}\ b_i(t) \le q_i/7 \\[4pt]
-1 & b_i(t) > 2q_i/7 \\[4pt]
+0 & \tilde{d}_i(t) \geq q_i \ \text{or}\ b_i(t) \le 0 \\[4pt]
+1 & b_i(t) > q_i/7 \\[4pt]
 0.5 & \text{otherwise}
 \end{cases}
 $$
